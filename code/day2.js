@@ -20,7 +20,7 @@
  * What is the checksum for the spreadsheet in your puzzle input?
 */
 
-const data = `62	1649	1731	76	51	1295	349	719	52	1984	2015	2171	981	1809	1811	715
+const data = `62	1649	1731	76	51	1295	349	719	52	1984	2015	2171	981	1809	181	1715
 161	99	1506	1658	84	78	533	242	1685	86	107	1548	670	960	1641	610
 95	2420	2404	2293	542	2107	2198	121	109	209	2759	1373	1446	905	1837	111
 552	186	751	527	696	164	114	530	558	307	252	200	481	142	205	479
@@ -41,6 +41,10 @@ const data1 = `5	1	9	5
 7	5	3
 2	4	6	8`;
 
+const data2 = `5	9	2	8
+9	4	7	3
+3	8	6	5`;
+
 class DayTwo {
 
     /**
@@ -58,6 +62,36 @@ class DayTwo {
         }
 
         return resultingArray;
+    }
+
+    /**
+     *
+     * @param array
+     * @returns {*}
+     */
+    getModuleOfIntNumber (array) {
+        let num = 0;
+        let noresult = true;
+        let count = 0;
+
+        while(noresult) {
+
+            if(count === array.length) {
+                noresult = false;
+                break;
+            }
+            array.forEach((number, i) => {
+                console.log(array[count], number ,count !== i && array[count] >= number && array[count] % number === 0, parseInt(array[count]) >= parseInt(number), array[count] % number === 0, array[count] / number);
+                if (count !== i && parseInt(array[count]) >= parseInt(number) && array[count] % number === 0 ) {
+                    console.log(`found number ${num}`);
+                    num = array[count] / number;
+                    noresult = false;
+
+                }
+            });
+            count ++;
+        }
+        return num;
     }
 
     /**
@@ -113,6 +147,12 @@ class DayTwo {
         return a - b;
     }
 
+    getResult2 (data) {
+        let results = [];
+        this.createArrayFromString(data).map(arr => results.push(this.getModuleOfIntNumber(arr)));
+        return this.sumArray(results);
+    };
+
     getResult (data) {
         let results = [];
         this.createArrayFromString(data).map(arr => results.push(this.getLowestAndHighestNumberSub(arr)));
@@ -120,4 +160,5 @@ class DayTwo {
     }
 }
 
-console.log('result', new DayTwo().getResult(data));
+console.log('result', new DayTwo().getResult2(data));
+
