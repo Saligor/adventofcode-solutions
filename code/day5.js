@@ -1129,7 +1129,7 @@ class Day5 {
             //console.log(`current array index ${currentPos}`);
             let nextLocation = data[currentPos];
             //console.log(`Next Location to jump ${nextLocation}`);
-            data[currentPos] = parseInt(data[currentPos]) >= 3 ? parseInt(data[currentPos]) - 1 : parseInt(data[currentPos]) + 1;
+            data[currentPos] = /*parseInt(data[currentPos]) >= 3 ? parseInt(data[currentPos]) - 1 :*/ parseInt(data[currentPos]) + 1;
             currentPos = parseInt(currentPos) + parseInt(nextLocation); // Setting the next Value to look at
             //console.log(`Next Array index ${currentPos}`);
             if (currentPos >= data.length) {
